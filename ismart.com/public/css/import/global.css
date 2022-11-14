@@ -1,0 +1,62 @@
+body {
+  font-family: "Roboto Regular";
+  font-size: 14px;
+  line-height: 24px;
+  color: #333;
+}
+.fl-left {
+  float: left;
+}
+.fl-right {
+  float: right;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.wp-inner {
+  width: 1170px;
+  margin: 0px auto;
+  background: #fff;
+}
+#btn-respon,
+#menu-respon {
+  display: none;
+}
+/*RESET BOOTSTRAP*/
+a {
+  text-decoration: none !important;
+}
+.table {
+  margin-bottom: 0;
+}
+.table-responsive {
+  overflow-x: inherit;
+}
+.clear20 {
+  clear: both;
+  height: 20px;
+}
+
+.toggle-pass {
+  position: absolute;
+  top: 25px;
+  right: 0px;
+}
+
+.eye {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 15px;
+  transition: 0.2s;
+}
+
+.eye-close.show {
+  display: block;
+}
+.eye-open.hide,
+.eye-close {
+  display: none;
+}
