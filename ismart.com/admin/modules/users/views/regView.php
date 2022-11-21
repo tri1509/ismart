@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php get_header('login'); ?>
 <link rel="stylesheet" href="public/login.css">
 <div class="site-wrap d-md-flex align-items-stretch">
   <div class="bg-img" style="background-image: url('public/images/img-bg-2.jpg')"></div>

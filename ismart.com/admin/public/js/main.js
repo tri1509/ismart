@@ -1,51 +1,54 @@
 $(document).ready(function () {
-  //  EVEN MENU RESPON
-  $("html").on("click", function (event) {
-    var target = $(event.target);
-    var site = $("#site");
+  var height =
+    $(window).height() -
+    $("#footer-wp").outerHeight(true) -
+    $("#header-wp").outerHeight(true);
+  $("#content").css("min-height", height);
 
-    if (target.is("#btn-respon i")) {
-      if (!site.hasClass("show-respon-menu")) {
-        site.addClass("show-respon-menu");
-      } else {
-        site.removeClass("show-respon-menu");
-      }
-    } else {
-      $("#container").click(function () {
-        if (site.hasClass("show-respon-menu")) {
-          site.removeClass("show-respon-menu");
-          return false;
-        }
-      });
-    }
+  //  CHECK ALL
+  $('input[name="checkAll"]').click(function () {
+    var status = $(this).prop("checked");
+    $('.list-table-wp tbody tr td input[type="checkbox"]').prop(
+      "checked",
+      status
+    );
   });
 
-  //    MENU RESPON
-  $("#main-menu-respon li .sub-menu").after(
+  // EVENT SIDEBAR MENU
+  $("#sidebar-menu .nav-item .nav-link .title").after(
     '<span class="fa fa-angle-right arrow"></span>'
   );
-  $("#main-menu-respon li .arrow").click(function () {
-    if ($(this).parent("li").hasClass("open")) {
-      $(this).parent("li").removeClass("open");
-      $(this).parent("li").find(".sub-menu").slideUp();
+  var sidebar_menu = $("#sidebar-menu > .nav-item > .nav-link");
+  sidebar_menu.on("click", function () {
+    if (!$(this).parent("li").hasClass("active")) {
+      $(".sub-menu").slideUp();
+      $(this).parent("li").find(".sub-menu").slideDown();
+      $("#sidebar-menu > .nav-item").removeClass("active");
+      $(this).parent("li").addClass("active");
+      return false;
     } else {
       $(".sub-menu").slideUp();
-      $("#main-menu-respon li").removeClass("open");
-      $(this).parent("li").addClass("open");
-      $(this).parent("li").find(".sub-menu").slideDown();
+      $("#sidebar-menu > .nav-item").removeClass("active");
+      return false;
     }
   });
 });
 
-function togglePass() {
-  var hide = document.getElementById("open");
-  hide.classList.toggle("hide");
-  var show = document.getElementById("close");
-  show.classList.toggle("show");
-  var x = document.getElementById("password");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
+(function () {
+  "use strict";
+
+  var elToggle = document.querySelector(".js-password-show-toggle"),
+    passwordInput = document.getElementById("password");
+
+  elToggle.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (elToggle.classList.contains("active")) {
+      passwordInput.setAttribute("type", "password");
+      elToggle.classList.remove("active");
+    } else {
+      passwordInput.setAttribute("type", "text");
+      elToggle.classList.add("active");
+    }
+  });
+})();

@@ -1,5 +1,5 @@
 <?php
-get_header();
+get_header('login');
 ?>
 <link rel="stylesheet" href="public/login.css" />
 <div class="site-wrap d-md-flex align-items-stretch">

@@ -1,50 +1,96 @@
 <?php
 get_header();
 ?>
-<link rel="stylesheet" href="public/login.css" />
-<div class="site-wrap d-md-flex align-items-stretch">
-  <div class="bg-img" style="background-image: url('public/images/img-bg-1.jpg')"></div>
-  <div class="form-wrap">
-    <div class="form-inner">
-      <h1 class="title">Khôi phục mật khẩu</h1>
-      <p class="caption mb-4 text-center"><?php echo form_error('account'); ?></p>
-      <form action="" class="pt-3" method="post">
-        <div class="form-floating">
-          <input type="text" class="form-control" name="email" id="email" placeholder="info@example.com"
-            value="<?php echo set_value('email'); ?>" />
-          <label for="email">Email đăng nhập</label>
-          <?php echo form_error('email'); ?>
-        </div>
+<style>
+.modal_login {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999999;
+  background-color: rgba(0, 0, 0, 0.25);
+}
 
-        <div class="d-grid mb-4">
-          <input type="submit" class="btn btn-primary" value="Gửi yêu cầu" name="btn_reset" id="btn_reset">
+.modal_login-content {
+  width: 400px;
+  height: 100px;
+  background-color: #ffffff;
+  position: absolute;
+  z-index: 9999999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  padding: 10px 20px;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.modal_login-content p {
+  margin-top: 30px;
+}
+
+.close-act {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-image: url(https://rubikstore.vn/cdn/themes/metavn/img/cross.png);
+  background-repeat: no-repeat;
+  background-position: 7px 7px;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  z-index: 1200;
+  cursor: pointer;
+
+}
+
+.text-success {
+  color: #270;
+}
+</style>
+<div id="main-content-wp" class="change-pass-page">
+  <div class="section" id="title-page">
+    <div class="clearfix">
+      <a href="?page=add_cat" title="" id="add-new" class="fl-left">Thêm mới</a>
+      <h3 id="index" class="fl-left">Cập nhật tài khoản</h3>
+    </div>
+  </div>
+  <div class="wrap clearfix">
+    <?php get_sidebar('users'); ?>
+    <div id="content" class="fl-right">
+      <div class="section" id="detail-page">
+        <div class="section-detail">
+          <?php echo form_error('account') ?>
+          <form method="POST">
+            <label for="pass-old">Mật khẩu cũ</label>
+            <input type="password" name="pass-old" id="pass-old">
+            <?php echo form_error('pass-old'); ?>
+            <label for="pass-new">Mật khẩu mới</label>
+            <input type="password" name="pass-new" id="pass-new">
+            <?php echo form_error('pass-new'); ?>
+            <label for="confirm-pass">Xác nhận mật khẩu</label>
+            <input type="password" name="confirm-pass" id="confirm-pass">
+            <?php echo form_error('confirm-pass') ;?>
+            <button type="submit" name="btn-reset" id="btn-reset">Cập nhật</button>
+          </form>
         </div>
-        <div class="mb-2">
-          <a href="<?php echo base_url("?mod=users&action=reg") ; ?>">Đăng ký</a>
-          <i>|</i>
-          <a href="<?php echo base_url("?mod=users&action=login") ; ?>">Đăng nhập</a>
-        </div>
-        <div class="social-account-wrap">
-          <h4 class="mb-4"><span>or continue with</span></h4>
-          <ul class="list-unstyled social-account d-flex justify-content-between">
-            <li>
-              <a href="#"><img src="public/images/icon-google.svg" alt="Google logo" /></a>
-            </li>
-            <li>
-              <a href="#"><img src="public/images/icon-facebook.svg" alt="Facebook logo" /></a>
-            </li>
-            <li>
-              <a href="#"><img src="public/images/icon-apple.svg" alt="Apple logo" /></a>
-            </li>
-            <li>
-              <a href="#"><img src="public/images/icon-twitter.svg" alt="Twitter logo" /></a>
-            </li>
-          </ul>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
 <?php
 get_footer();
 ?>
+<script>
+$(document).ready(function() {
+  $("#close-modal").click(function() {
+    $(".modal_login").fadeOut(500);
+  });
+  $("#close-modal").click(function() {
+    $(".modal_login-content").fadeOut(500);
+  });
+})
+</script>

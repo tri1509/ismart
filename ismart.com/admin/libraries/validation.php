@@ -28,6 +28,12 @@
       return "<p class='text-danger'>{$error[$lable_field]}</p>";
   }
 
+  function form_success($lable_field){
+    global $success;
+    if(!empty($success[$lable_field])) 
+      return "<p class='text-success'>{$success[$lable_field]}</p>";
+  }
+
   function set_value($lable_field){
     global $$lable_field;
     if(!empty($$lable_field)) return $$lable_field;
